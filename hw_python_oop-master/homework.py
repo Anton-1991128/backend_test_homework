@@ -57,8 +57,8 @@ class Training:
 
 class Running(Training):
     """Тренировка: бег."""
-    coeff_calorie: int = 18
-    coeff_calorie: int = 20
+    coeff_calorie_1: int = 18
+    coeff_calorie_2: int = 20
 
     def __init__(self,
                  action: int,
@@ -69,10 +69,8 @@ class Running(Training):
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
-        return (
-         (self.coeff_calorie * self.get_mean_speed() - self.coeff_calorie) *
-         (self.weight / self.M_IN_KM * self.duration * 60)
-         )
+        Running_date = (self.coeff_calorie_1 * self.get_mean_speed() - self.coeff_calorie_2) * self.weight / self.M_IN_KM * self.duration*60
+        return Running_date
 
 
 class SportsWalking(Training):
