@@ -57,8 +57,8 @@ class Training:
 
 class Running(Training):
     """Тренировка: бег."""
-    coeff_calorie_1: int = 18
-    coeff_calorie_2: int = 20
+    Coeff_calorie_1: int = 18
+    Coeff_calorie_2: int = 20
 
     def __init__(self,
                  action: int,
@@ -66,9 +66,10 @@ class Running(Training):
                  weight: float
                  ) -> None:
         super().__init__(action, duration, weight)
+
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
-        Running_date = (self.coeff_calorie_1 * self.get_mean_speed() - self.coeff_calorie_2) * self.weight / self.M_IN_KM * self.duration*60
+        Running_date = (self.Coeff_calorie_1 * self.get_mean_speed() - self.Coeff_calorie_2) * self.weight / self.M_IN_KM * self.duration*60
         return Running_date
 
 
@@ -85,10 +86,10 @@ class SportsWalking(Training):
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
-        file_1: float = 0.035
-        file_2: float = 0.029
-        return (file_1 * self.weight + (self.get_mean_speed() ** 2 //
-                self.height) * file_2 * self.weight) * self.duration*60
+        File_1: float = 0.035
+        File_2: float = 0.029
+        return (File_1 * self.weight + (self.get_mean_speed() ** 2 //
+                self.height) * File_2 * self.weight) * self.duration*60
 
 
 class Swimming(Training):
@@ -115,22 +116,22 @@ class Swimming(Training):
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
-        calories_3: float = 1.1
-        calories_4: int = 2
-        return (self.get_mean_speed() + calories_3) * calories_4 * self.weight
+        Calories_3: float = 1.1
+        Calories_4: int = 2
+        return (self.get_mean_speed() + Calories_3) * Calories_4 * self.weight
 
 
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
-    sport_data = {
+    Sport_data = {
         'SWM': Swimming,
         'RUN': Running,
         'WLK': SportsWalking
         }
-    if workout_type in sport_data:
-        return sport_data[workout_type](*data)
+    if workout_type in Sport_data:
+        return Sport_data[workout_type](*data)
     else:
-        raise KeyError(f'{sport_data} - not found')
+        raise KeyError(f'{Sport_data} - not found')
 
 
 def main(training: Training) -> None:
