@@ -60,13 +60,6 @@ class Running(Training):
     Coeff_calorie_1: int = 18
     Coeff_calorie_2: int = 20
 
-    def __init__(self,
-                 action: int,
-                 duration: float,
-                 weight: float
-                 ) -> None:
-        super().__init__(action, duration, weight)
-
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
         Running_date = (self.Coeff_calorie_1 * self.get_mean_speed() - self.Coeff_calorie_2) * self.weight / self.M_IN_KM * self.duration * 60
