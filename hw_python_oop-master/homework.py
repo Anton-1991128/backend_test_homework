@@ -39,7 +39,7 @@ class Training:
 
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость движения."""
-        return self.get_distance()/self.duration
+        return self.get_distance() / self.duration
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
@@ -69,7 +69,7 @@ class Running(Training):
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
-        Running_date = (self.Coeff_calorie_1 * self.get_mean_speed() - self.Coeff_calorie_2) * self.weight / self.M_IN_KM * self.duration*60
+        Running_date = (self.Coeff_calorie_1 * self.get_mean_speed() - self.Coeff_calorie_2) * self.weight / self.M_IN_KM * self.duration * 60
         return Running_date
 
 
@@ -88,8 +88,7 @@ class SportsWalking(Training):
         """Получить количество затраченных калорий."""
         File_1: float = 0.035
         File_2: float = 0.029
-        return (File_1 * self.weight + (self.get_mean_speed() ** 2 //
-                self.height) * File_2 * self.weight) * self.duration*60
+        return (File_1 * self.weight + (self.get_mean_speed() ** 2 // self.height) * File_2 * self.weight) * self.duration * 60
 
 
 class Swimming(Training):
@@ -110,8 +109,8 @@ class Swimming(Training):
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость движения."""
         return (
-            self.length_pool * self.count_pool /
-            self.M_IN_KM / self.duration
+            self.length_pool * self.count_pool
+            / self.M_IN_KM / self.duration
         )
 
     def get_spent_calories(self) -> float:
@@ -127,7 +126,7 @@ def read_package(workout_type: str, data: list) -> Training:
         'SWM': Swimming,
         'RUN': Running,
         'WLK': SportsWalking
-        }
+    }
     if workout_type in Sport_data:
         return Sport_data[workout_type](*data)
     else:
